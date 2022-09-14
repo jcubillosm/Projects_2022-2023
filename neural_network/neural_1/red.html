@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		.center {
+		  margin: auto;
+		  width: 50%;
+		  padding: 100px;
+		  text-align: center;
+		  font-size: 100px;
+		}
+	</style>
+</head>
+<body>
+
+	<p>
+	    <input data-jscolor="{value:'rgba(255,168,255,0.5)'}", onInput="update(this.jscolor)">
+	</p>
+	<div id="pr" class="center">Hello World!</div>
+
+	<script src="jscolor.js"></script>
+	<script src="brain.js"></script>
+
+	<script type="text/javascript">
+		var network = new brain.NeuralNetwork();
+
+		//Neural training
+		network.train([
+				{input:{red:0, green:0, blue:0}, output:{picker:1}},
+				{input:{red:1, green:1, blue:1}, output:{picker:0}},
+				{input:{red:1, green:244/255, blue:176/255}, output:{picker:1}}
+			]);
+		
+		
+		function update(picker) {
+		    document.getElementById('pr').style.background = picker.toRGBAString();
+
+		    var userInput = {
+		    	red: picker.channel('R')/255,
+		    	green: picker.channel('G')/255,
+		    	blue: picker.channel('B')/255,
+		    };
+		    var result = network.run(userInput);
+		    var backId = (result.picker > .5) ? "white" : "black";
+		    console.log("result is: " + result.picker + " Font colour is: " + backId);
+			document.getElementById('pr').style.color = backId;
+
+		}
+
+	jscolor.trigger('input'); // triggers 'onInput' on all color pickers when they are ready
+	</script>
+</body>
+</html>

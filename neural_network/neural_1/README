@@ -1,0 +1,18 @@
+## Neural network
+
+This code is a personal project to train a neural network. 
+It consist of a simple code with a HTML and Javascript that shows the user a text in a box and a color picker. The user can change the background color of that box but it is the program who selects the font color between black and white.
+
+At the moment, the neural network has been trained with three cases:
+The border case: 
+	{input:{red:0, green:0, blue:0}, output:{picker:1}},
+	{input:{red:1, green:1, blue:1}, output:{picker:0}}
+
+And with third random case to try to understand how new training cases can be change the results.
+
+## Sources
+
+It was used a color picker from jcolor.com
+The brain.js is the neural network used. This code was obtain from https://unpkg.com/brain.js
+
+This program is based on the youtube video "Tu primera red neuronal - Inteligencia Artificial" https://www.youtube.com/watch?v=UNFFLJPW7KQ&t=421s and it has a personal learning purpose. 
